@@ -1,6 +1,6 @@
 use crate::Error;
-mod unconfirmed_request_pdu;
 mod tag;
+mod unconfirmed_request_pdu;
 
 pub fn parse_apdu(bytes: &[u8]) -> Result<APDU, Error> {
     if bytes.is_empty() {
@@ -12,6 +12,7 @@ pub fn parse_apdu(bytes: &[u8]) -> Result<APDU, Error> {
     })
 }
 
+#[derive(Debug)]
 pub struct APDU<'a> {
     pub bytes: &'a [u8],
     pdu_type: u8,
@@ -27,6 +28,7 @@ impl<'a> APDU<'a> {
 }
 
 /// Classification of APDU service. There are multiple services within each PDU type.
+#[derive(Debug)]
 pub enum PDUType {
     BACnetConfirmedRequestPDU,
     BACnetUnconfirmedRequestPDU,
@@ -58,6 +60,7 @@ impl From<u8> for PDUType {
     }
 }
 
+#[derive(Debug)]
 pub enum ConfirmedServiceChoice {
     SubscribeCOV,
     ReadProperty,
@@ -84,6 +87,7 @@ impl From<u8> for ConfirmedServiceChoice {
     }
 }
 
+#[derive(Debug)]
 pub enum BACnetRejectReason {
     Other,
     BufferOverflow,
@@ -116,6 +120,7 @@ impl From<u8> for BACnetRejectReason {
     }
 }
 
+#[derive(Debug)]
 pub struct ErrorPDU {
     invoke_id: u8,
     error_class: u8,
@@ -146,7 +151,7 @@ impl ErrorPDU {
 
 #[cfg(test)]
 mod tests {
-    use super::{unconfirmed_request_pdu::*, tag::*};
+    use super::unconfirmed_request_pdu::*;
     use crate::*;
 
     #[test]

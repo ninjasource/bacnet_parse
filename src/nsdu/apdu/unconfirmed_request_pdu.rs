@@ -2,6 +2,7 @@ use super::{tag::Tag, APDU};
 use crate::nsdu::parse_unsigned;
 use crate::Error;
 
+#[derive(Debug)]
 pub enum UnconfirmedServiceChoice {
     IAm, // src/iam.c:77
     IHave,
@@ -26,6 +27,7 @@ impl UnconfirmedServiceChoice {
     }
 }
 
+#[derive(Debug)]
 pub struct WhoIsLimits {
     pub low_limit: u32,
     pub high_limit: u32,
@@ -62,6 +64,7 @@ impl WhoIsLimits {
     }
 }
 
+#[derive(Debug)]
 pub struct IAmData {}
 
 impl IAmData {

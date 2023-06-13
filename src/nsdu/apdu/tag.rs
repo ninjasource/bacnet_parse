@@ -1,7 +1,8 @@
 use crate::Error;
 use arrayref::array_ref;
 
-enum TagType {
+#[derive(Debug)]
+pub enum TagType {
     Null,
     Boolean,
     UnsignedInt,
@@ -45,6 +46,7 @@ impl From<u8> for TagType {
     }
 }
 
+#[derive(Debug)]
 pub struct Tag {
     pub number: u8,
     pub value: u32,

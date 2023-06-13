@@ -38,7 +38,7 @@ pub fn parse_bvlc(slice: &[u8]) -> Result<BVLC, Error> {
     Ok(bvlc)
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 pub struct BVLC<'a> {
     bfn: BVLCFunction,
     ip_port: Option<IpPort>,
@@ -108,6 +108,7 @@ impl From<u8> for BVLCFunction {
     }
 }
 
+#[derive(Debug)]
 pub struct IpPort {
     pub ip: u32,
     pub port: u16,

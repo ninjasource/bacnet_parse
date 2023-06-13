@@ -47,7 +47,7 @@ pub fn parse_npdu(bytes: &[u8]) -> Result<NPDU, Error> {
     Ok(npdu)
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 pub struct NPDU<'a> {
     ncpi_control: u8,
     dst: Option<DstHopCount<'a>>,
@@ -110,7 +110,7 @@ pub enum NCPIPriority {
     Normal,
 }
 
-#[derive(Default)]
+#[derive(Default, Debug)]
 pub struct DstHopCount<'a> {
     dst: NetAddr<'a>,
     hopcount: u8,

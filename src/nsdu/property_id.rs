@@ -37,6 +37,7 @@
 ///          or      www.github.com/bacnettesting/bacnet-stack
 use arrayref::array_ref;
 
+#[derive(Debug)]
 pub enum PropertyId {
     PropAckedTransitions,
     PropAckRequired,

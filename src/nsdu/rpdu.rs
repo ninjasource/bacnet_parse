@@ -34,6 +34,7 @@ pub fn parse_rpdu(bytes: &[u8]) -> Result<RPDU, Error> {
 
 pub type DNET = u16;
 
+#[derive(Debug)]
 pub struct DNETs<'a> {
     bytes: &'a [u8],
 }
@@ -66,6 +67,7 @@ fn try_parse_dnet(b: &[u8]) -> Result<DNET, Error> {
     }
 }
 
+#[derive(Debug)]
 pub enum RPDU<'a> {
     WhoIsRouterToNetwork(Option<DNET>),
     IAmRouterToNetwork(DNETs<'a>),
