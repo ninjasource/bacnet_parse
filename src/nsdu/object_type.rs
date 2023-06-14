@@ -37,7 +37,7 @@
 ///          or      www.github.com/bacnettesting/bacnet-stack
 use arrayref::array_ref;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum ObjectType {
     ObjectAnalogInput,
     ObjectAnalogOutput,
@@ -107,10 +107,9 @@ pub enum ObjectType {
     Invalid,
 }
 
-impl ObjectType {
-    pub fn parse(b: &[u8]) -> Self {
-        // FIXME: parse properly
-        match u16::from_be_bytes(*array_ref!(b, 0, 2)) {
+impl From<u32> for ObjectType {
+    fn from(value: u32) -> Self {
+        match value {
             0 => Self::ObjectAnalogInput,
             1 => Self::ObjectAnalogOutput,
             2 => Self::ObjectAnalogValue,
@@ -172,5 +171,13 @@ impl ObjectType {
             128..=1023 => Self::Proprietary,
             _ => Self::Invalid,
         }
+    }
+}
+
+impl ObjectType {
+    pub fn parse(b: &[u8]) -> Self {
+        // FIXME: parse properly
+        let value = u16::from_be_bytes(*array_ref!(b, 0, 2)) as u32;
+        value.into()
     }
 }

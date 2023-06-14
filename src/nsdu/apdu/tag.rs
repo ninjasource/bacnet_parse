@@ -1,7 +1,7 @@
 use crate::Error;
 use arrayref::array_ref;
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub enum TagType {
     Null,
     Boolean,

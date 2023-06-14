@@ -142,7 +142,7 @@ pub use bvlc::parse_bvlc;
 pub mod npdu;
 
 pub mod nsdu;
-pub use nsdu::{parse_apdu, parse_rpdu};
+pub use nsdu::{apdu::unconfirmed_request_pdu::UnconfirmedServiceChoice, parse_apdu, parse_rpdu};
 
 #[derive(Debug)]
 pub enum Error {

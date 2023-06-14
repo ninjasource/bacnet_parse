@@ -1,6 +1,6 @@
 use crate::Error;
 mod tag;
-mod unconfirmed_request_pdu;
+pub mod unconfirmed_request_pdu;
 
 pub fn parse_apdu(bytes: &[u8]) -> Result<APDU, Error> {
     if bytes.is_empty() {
